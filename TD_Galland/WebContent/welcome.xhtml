@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" template="template.xhtml">
+  <ui:define name="top">
+    <ui:include src="top.xhtml" />
+  </ui:define>
+  <ui:define name="left">
+    <ui:include src="left.xhtml" />
+  </ui:define>
+  <ui:define name="content">
+  	<h:panelGroup rendered="#{clientControler.loggedIn}">
+    	Bienvenue #{currentClient.login}
+    </h:panelGroup>
+    <br />
+
+     <h:dataTable value="#{categoryControler.categoryList}" var="category">
+      	<f:facet name="header">Categories</f:facet>
+      	<h:column>
+      		<h:form>    			
+      			<h:commandLink action="book">#{category.title}
+      				<f:setPropertyActionListener target="#{categoryBean.entityId}" value="#{category.id}" />
+      			</h:commandLink>
+      		</h:form>
+      	</h:column>
+      </h:dataTable>
+  </ui:define>
+</ui:composition>

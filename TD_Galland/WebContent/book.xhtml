@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" template="template.xhtml">
+  <ui:define name="top">
+    <ui:include src="top.xhtml" />
+  </ui:define>
+  <ui:define name="left">
+    <ui:include src="left.xhtml" />
+  </ui:define>
+  <ui:define name="content">
+    <br />
+
+     <h:dataTable value="#{categoryBean.category.books}" var="book">
+      	<f:facet name="header">Livres pour la catégorie #{categoryBean.category.title}</f:facet>
+      	<h:column>
+      		  #{book.photo}
+      	</h:column>
+      	<h:column>
+      		<f:facet name="header">
+      			<h:outputText value="Titre"/>
+      		</f:facet>
+      		#{book.title} 
+      	</h:column>
+      	<h:column>
+      		<f:facet name="header">
+      			<h:outputText value="Prix"/>
+      		</f:facet>
+      		#{book.price}
+      	</h:column>
+      	<h:column>
+      		<f:facet name="header">
+      			<h:outputText value="Date de parution"/>
+      		</f:facet>
+      		#{book.date}
+      	</h:column>
+      	<h:column>
+      		<f:facet name="header">
+      			<h:outputText value="Auteurs"/>
+      		</f:facet>
+      		<h:dataTable value="#{book.authors}" var="aut">
+      			<h:column>
+      				#{aut.firstName}
+      			</h:column>
+      			<h:column>
+      				#{aut.lastName}
+      			</h:column>
+      		</h:dataTable>
+      	</h:column>
+      	<h:column>
+      		<h:panelGroup>
+       			<h:commandLink action="#{orderController.addBook(book.id)}" value="+" />
+     		</h:panelGroup>
+      	</h:column>
+      </h:dataTable>
+  </ui:define>
+</ui:composition>

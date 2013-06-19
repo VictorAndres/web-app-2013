@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" template="template.xhtml">
+  <ui:define name="top">
+    <ui:include src="top.xhtml" />
+  </ui:define>
+  <ui:define name="left">
+    <ui:include src="left.xhtml" />
+  </ui:define>
+  <ui:define name="content">
+    <br />
+     Mes informations
+     <br />
+     <br />
+     #{currentClient.login}
+     <br />
+     <h:link value="Modifier mon mot de passe" outcome="modifierMDP"/>
+     <br />
+     <br />
+      	<h:dataTable value="#{clientControler.commandes}" var="commandes">
+      		<f:facet name="header">
+      			<h:outputText value="Historique de mes commandes"/> 
+      		</f:facet>
+      			<h:dataTable value="#{commandes.items}" var="item">
+	      			<h:column>
+	      				#{item.book.title}
+	      			</h:column>
+	      			<h:column>
+	      				#{item.quantity}
+	      			</h:column>
+	      			<h:column>
+	      				#{item.total}
+	      			</h:column>
+      			</h:dataTable> 
+      		<h:column>
+      			#{commandes.total}
+      		</h:column>
+      		<h:column>
+      			#{commandes.date}
+      		</h:column>
+      	</h:dataTable>
+  </ui:define>
+</ui:composition>

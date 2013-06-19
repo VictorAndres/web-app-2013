@@ -1,0 +1,19 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+ <h:link outcome="welcome">
+ <h:graphicImage name="logo.png" library="images" alt="" width="179" height="76" />
+ </h:link>
+  <div style="float: right;">
+    <h:form id="topForm">
+      <h:panelGroup rendered="#{clientControler.loggedIn}">		
+      	<h:commandLink action="compteClient">#{currentClient.login}
+      		<f:setPropertyActionListener target="#{clientBean.entityId}" value="#{currentClient.id}" />
+      	</h:commandLink>
+        <h:commandLink action="#{clientControler.doLogout}" value="Se déconnecter" />
+      </h:panelGroup>
+      <h:panelGroup rendered="#{clientControler.loggedOut}">
+        <h:commandLink action="login" value="Se connecter" />
+      </h:panelGroup>
+    </h:form>
+  </div>
+</ui:composition>
