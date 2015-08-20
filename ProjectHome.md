@@ -1,0 +1,1 @@
+Academic J2EE project of an eCommerce site using Java Server Faces
